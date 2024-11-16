@@ -1,3 +1,4 @@
+import pandas as pd
 svm_prediction = pd.read_csv('svm_prediction.csv')
 rf_prediction = pd.read_csv('rf_prediction.csv')
 
