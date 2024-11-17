@@ -4,6 +4,11 @@ import tensorflow as tf
 import numpy as np
 import pandas as pd
 
+# Registrar la activación personalizada Swish
+@tf.keras.utils.register_keras_serializable()
+def swish(x):
+    return x * tf.keras.activations.sigmoid(x)
+
 class FixedDropout(tf.keras.layers.Layer):
     def __init__(self, rate, noise_shape=None, seed=None, **kwargs):
         super(FixedDropout, self).__init__(**kwargs)
@@ -18,7 +23,7 @@ class FixedDropout(tf.keras.layers.Layer):
         return tf.nn.dropout(inputs, rate=self.rate, noise_shape=noise_shape, seed=self.seed)
 
 # Registrar capas personalizadas al cargar el modelo
-with tf.keras.utils.custom_object_scope({'FixedDropout': FixedDropout}):
+with tf.keras.utils.custom_object_scope({'FixedDropout': FixedDropout, 'swish': swish}):
     model = tf.keras.models.load_model('my_model.h5')  # Asegúrate de que la ruta sea correcta
 
 # Streamlit Interface
