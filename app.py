@@ -22,7 +22,7 @@ with tf.keras.utils.custom_object_scope({'FixedDropout': FixedDropout}):
     model = tf.keras.models.load_model('my_model.h5')  # Asegúrate de que la ruta sea correcta
 
 # Streamlit Interface
-st.title("blablabla")
+st.title("TheInterns")
 
 st.markdown("""
 ### Mango challenge
